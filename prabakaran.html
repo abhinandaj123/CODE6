@@ -1,3 +1,62 @@
+#include<stdio.h>
+#include<malloc.h>
+void main()
+{
+    struct node
+    {
+     int data;
+     struct node*next;
+    }
+    *start=NULL;
+    struct node*new_node,*temp;
+    char ch;
+    int i,n;
+    // inserting new node at the begining
+    do
+    {
+        new_node=(struct node*)malloc(sizeof(struct node));
+        printf("\n enter the node data:");
+        scanf("%d",&new_node->data);
+        if(start==NULL)
+        {
+            start=new_node;
+            start->next=NULL;
+        }
+        else
+        {
+              new_node->next=start;
+                 start=new_node;
+                 }
+                 printf("add more(y/n)?");
+                 ch=getche();
+      }
+      while((ch=='y')||(ch=='Y'));
 
-<dd>american built company with high quality display </dd>
+      //display the list
+      printf("\n the linked list is \n");
+    for(temp=start,i=1;temp!=NULL;temp=temp->next,i++)
+        printf("[%d] %d->",i,temp->data);
+    printf("NULL");
+        // get node location to insert
+        printf("\n  after which node to insert to insert the new node(1-%d)?",i-1);
+        scanf("%d",&n);
+        if(n<1||n>i-1)
+        printf("invalid node, node must be within 1-%d",i-1);
+        else
+        {
+
+        new_node=(struct node*)malloc(sizeof (struct node));
+        printf("\n enter the node data:");
+        scanf("%d",&new_node->data);
+        for(temp=start,i=1;temp!=NULL;temp=temp->next,i++)
+            if(i==n) break;
+        new_node->next=temp->next;
+        temp->next=new_node;
+        printf("\n The inserted linked list is\n");
+        for(temp=start,i=1;temp!=NULL;temp=temp->next,i++)
+            printf("[%d]%d->",i,temp->data);
+        printf("NULL");
+        }
+        getch();
+}
 
